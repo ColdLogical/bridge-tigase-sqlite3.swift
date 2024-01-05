@@ -1,5 +1,5 @@
 //
-// DBError.swift
+// Configuration.swift
 //
 // TigaseSQLite3.swift
 // Copyright (C) 2020 "Tigase, Inc." <office@tigase.com>
@@ -20,31 +20,30 @@
 //
 
 import Foundation
-import CSQLite
 
-public enum DBError: Error {
+public struct Configuration {
     
-    private static let successCodes = [ SQLITE_OK, SQLITE_ROW, SQLITE_DONE ];
-        
-    case sqliteError(errorCode: Int32, message: String?)
-    case invalidParameterName(name: String)
-    case unsupportedType(name: String)
-    case internalError
-    case invalidResult
-        
-    init?(resultCode: Int32) {
-        guard !DBError.successCodes.contains(resultCode) else {
-            return nil;
-        }
-
-        self = .sqliteError(errorCode: resultCode, message: nil);
-    }
+    /// Path to the database file
+    public let path: String;
+    /// Initial size of readers pool
+    public let initialPoolSize: Int;
+    /// Maximal size of readers pool
+    public let maximalPoolSize: Int;
     
-    public init?(database: Database, resultCode: Int32) {
-        guard !DBError.successCodes.contains(resultCode) else {
-            return nil;
-        }
-
-        self = .sqliteError(errorCode: resultCode, message: database.errorMessage);
+    public var schemaMigrator: DatabaseSchemaMigrator?;
+    public let encryptionKey: String?
+    
+    public init(
+        path: String,
+        initialPoolSize: Int = 1,
+        maximalPoolSize: Int = 5,
+        schemaMigrator: DatabaseSchemaMigrator? = nil,
+        encryptionKey: String? = nil
+    ) {
+        self.path = path;
+        self.initialPoolSize = initialPoolSize;
+        self.maximalPoolSize = maximalPoolSize;
+        self.schemaMigrator = schemaMigrator;
+        self.encryptionKey = encryptionKey
     }
 }

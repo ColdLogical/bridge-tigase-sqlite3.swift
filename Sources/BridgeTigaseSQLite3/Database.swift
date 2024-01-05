@@ -20,11 +20,11 @@
 //
 
 import Foundation
-import CSQLite
+import SQLCipher
 
 public typealias SQLConnection = OpaquePointer;
 
-public class Database: DatabaseWriter {
+open class Database: DatabaseWriter {
     public let connection: SQLConnection;
     
     lazy var statementsCache = StatementCache(database: self);

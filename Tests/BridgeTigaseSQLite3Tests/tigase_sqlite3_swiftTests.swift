@@ -1,5 +1,5 @@
 //
-// Configuration.swift
+// tigase_sqlite3_swiftTests.swift
 //
 // TigaseSQLite3.swift
 // Copyright (C) 2020 "Tigase, Inc." <office@tigase.com>
@@ -18,24 +18,20 @@
 // along with this program. Look for COPYING file in the top folder.
 // If not, see http://www.gnu.org/licenses/.
 //
+//
 
-import Foundation
+import XCTest
+@testable import BridgeTigaseSQLite3
 
-public struct Configuration {
-    
-    /// Path to the database file
-    public let path: String;
-    /// Initial size of readers pool
-    public let initialPoolSize: Int;
-    /// Maximal size of readers pool
-    public let maximalPoolSize: Int;
-    
-    public var schemaMigrator: DatabaseSchemaMigrator?;
-    
-    public init(path: String, initialPoolSize: Int = 1, maximalPoolSize: Int = 5, schemaMigrator: DatabaseSchemaMigrator? = nil) {
-        self.path = path;
-        self.initialPoolSize = initialPoolSize;
-        self.maximalPoolSize = maximalPoolSize;
-        self.schemaMigrator = schemaMigrator;
+final class tigase_sqlite3_swiftTests: XCTestCase {
+    func testExample() {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct
+        // results.
+//        XCTAssertEqual(TigaseSQLite3Swift().text, "Hello, World!")
     }
+
+    static var allTests = [
+        ("testExample", testExample),
+    ]
 }

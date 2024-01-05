@@ -21,7 +21,7 @@
 //
 
 import Foundation
-import CSQLite
+import SQLCipher
 
 public let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
 

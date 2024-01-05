@@ -22,7 +22,7 @@
 
 import Foundation
 import XCTest
-import TigaseSQLite3
+import BridgeTigaseSQLite3
 
 class DatabaseSchemaMigrationTest: XCTestCase {
 

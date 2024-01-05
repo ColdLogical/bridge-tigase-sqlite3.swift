@@ -21,7 +21,7 @@
 //
 
 import Foundation
-import TigaseSQLite3
+import BridgeTigaseSQLite3
 
 import XCTest
 

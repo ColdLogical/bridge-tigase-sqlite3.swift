@@ -20,7 +20,7 @@
 //
 
 import Foundation
-import CSQLite
+import SQLCipher
 
 public class DatabasePool {
     
@@ -100,7 +100,11 @@ public class DatabasePool {
     }
     
     static func openDatabase(configuration: Configuration, flags: Int32) throws -> Database {
-        return try Database(path: configuration.path, flags: flags);
+        if let encryptionKey = configuration.encryptionKey {
+            return try EncryptedDatabase(path: configuration.path, flags: flags)
+        } else {
+            return try Database(path: configuration.path, flags: flags);
+        }
     }
 }
 

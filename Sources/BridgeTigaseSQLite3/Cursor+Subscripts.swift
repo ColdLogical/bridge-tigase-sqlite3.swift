@@ -20,7 +20,7 @@
 //
 
 import Foundation
-import CSQLite
+import SQLCipher
 
 extension Cursor {
     
