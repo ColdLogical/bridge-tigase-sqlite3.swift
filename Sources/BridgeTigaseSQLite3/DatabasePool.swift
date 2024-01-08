@@ -101,7 +101,11 @@ public class DatabasePool {
     
     static func openDatabase(configuration: Configuration, flags: Int32) throws -> Database {
         if let encryptionKey = configuration.encryptionKey {
-            return try EncryptedDatabase(path: configuration.path, flags: flags)
+            return try EncryptedDatabase(
+                path: configuration.path,
+                flags: flags,
+                password: encryptionKey
+            )
         } else {
             return try Database(path: configuration.path, flags: flags);
         }

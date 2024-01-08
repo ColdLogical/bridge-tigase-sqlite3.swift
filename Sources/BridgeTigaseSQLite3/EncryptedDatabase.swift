@@ -2,15 +2,15 @@ import Foundation
 import SQLCipher
 
 open class EncryptedDatabase: Database {
-    public override init (
+    public init (
         path: String,
-        flags: Int32 = SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX
+        flags: Int32 = SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX,
+        password: String
     ) throws {
         try super.init(path: path, flags: flags)
         
         let db = self.connection
         var stmt: OpaquePointer? = nil
-        let password: String = "correct horse battery staple"
         
         var code = sqlite3_key(db, password, Int32(password.utf8CString.count))
         guard code == SQLITE_OK
